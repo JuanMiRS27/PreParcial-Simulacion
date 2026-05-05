@@ -5,7 +5,7 @@ import { ClaimRequest, ClaimResponse } from '../../models/claim.model';
 
 @Injectable({ providedIn: 'root' })
 export class ClaimService {
-  private api = 'http://localhost:8082/api/claims';
+  private api = 'https://claims-eval.onrender.com/api/claims';
   private claimsSubject = new BehaviorSubject<ClaimResponse[]>([]);
   claims$ = this.claimsSubject.asObservable();
 

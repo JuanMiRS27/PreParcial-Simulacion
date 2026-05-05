@@ -6,7 +6,7 @@ import { AuthResponse, UserProfile } from '../../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private api = 'http://localhost:8081/api/auth';
+  private api = 'https://preparcial-simulacion.onrender.com/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 

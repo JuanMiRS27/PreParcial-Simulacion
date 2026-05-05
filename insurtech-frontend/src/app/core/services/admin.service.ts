@@ -5,7 +5,7 @@ import { AdminClaim, AdminClaimFilters, AdminOverview, AdminUser, AuditLogItem, 
 
 @Injectable({ providedIn: 'root' })
 export class AdminService {
-  private api = 'http://localhost:8081/api/admin';
+  private api = 'https://preparcial-simulacion.onrender.com/api/admin';
 
   constructor(private http: HttpClient) {}
 

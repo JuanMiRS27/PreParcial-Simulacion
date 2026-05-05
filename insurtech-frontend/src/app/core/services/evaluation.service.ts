@@ -6,7 +6,7 @@ import { ClaimService } from './claim.service';
 
 @Injectable({ providedIn: 'root' })
 export class EvaluationService {
-  private api = 'http://localhost:8082/api/evaluations';
+  private api = 'https://claims-eval.onrender.com/api/evaluations';
   private evaluationsSubject = new BehaviorSubject<EvaluationResponse[]>([]);
   evaluations$ = this.evaluationsSubject.asObservable();
 
