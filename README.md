@@ -1,25 +1,26 @@
-# InsurTech - Evaluación Automatizada de Siniestros
+# InsurTech - Evaluacion Automatizada de Siniestros
 
-Proyecto académico completo con:
+Proyecto academico completo con:
 - Backend: Spring Boot + JWT + PostgreSQL
 - Frontend: Angular 21
 - Docker: `Dockerfile` + `docker-compose.yml`
 
-## Ejecución local (rápida con Docker)
+## Ejecucion local backend (Docker)
 ```bash
 docker compose up --build
 ```
-Backend: `http://localhost:8080`
+Servicios backend:
+- Auth/Admin: `http://localhost:8081`
+- Claims/Evaluations: `http://localhost:8082`
 
-Frontend:
+## Ejecucion local frontend (Docker Compose)
 ```bash
 cd insurtech-frontend
-npm install
-npm start
+docker compose -f docker-compose.frontend.yml up
 ```
 Frontend: `http://localhost:4200`
 
-## Ejecución backend sin Docker
+## Ejecucion backend sin Docker
 1. Crear BD `insurtech_db` en PostgreSQL.
 2. Configurar variables de entorno usando `.env.example`.
 3. Ejecutar:
@@ -66,7 +67,7 @@ Frontend: `http://localhost:4200`
   "tipoSiniestro": "VEHICULO",
   "descripcion": "Choque leve en via principal con evidencia fotografica",
   "valorEstimado": 1800000,
-  "ubicacion": "Bogotá",
+  "ubicacion": "Bogota",
   "fechaSiniestro": "2026-05-01"
 }
 ```
@@ -74,5 +75,5 @@ Frontend: `http://localhost:4200`
 ### Evaluar siniestro
 `POST /api/evaluations/claim/1`
 
-### Consultar evaluación
+### Consultar evaluacion
 `GET /api/evaluations/claim/1`
