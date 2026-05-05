@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: insurtech-postgres
+    environment:
+      POSTGRES_DB: insurtech_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  auth-admin-service:
+    build: .
+    container_name: insurtech-auth-admin
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: auth-admin
+      PORT: 8081
+      DB_URL: jdbc:postgresql://postgres:5432/insurtech_db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: super-secret-key-for-jwt-token-min-32
+      JWT_EXPIRATION: 86400000
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+
+  claims-eval-service:
+    build: .
+    container_name: insurtech-claims-eval
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: claims-eval
+      PORT: 8082
+      DB_URL: jdbc:postgresql://postgres:5432/insurtech_db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: super-secret-key-for-jwt-token-min-32
+      JWT_EXPIRATION: 86400000
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

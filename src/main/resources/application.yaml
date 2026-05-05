@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: PreparcialArle
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/insurtech_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    time-zone: America/Bogota
+
+server:
+  port: ${PORT:8080}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-this-secret-key-to-at-least-32-bytes-length}
+    expiration-ms: ${JWT_EXPIRATION:86400000}

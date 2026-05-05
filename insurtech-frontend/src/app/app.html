@@ -1,0 +1,38 @@
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand-mark">IT</div>
+    <div class="brand-text">
+      <h1 class="brand-title">InsurTech Claims</h1>
+      <p class="brand-subtitle">Sistema de evaluacion automatizada de siniestros</p>
+    </div>
+    <div class="top-actions">
+      @if (isAdmin) {
+        @if (inAdminRoute) {
+          <a class="btn btn-secondary top-admin-btn" routerLink="/dashboard/claims">Salir Admin</a>
+        } @else {
+          <a class="btn btn-accent top-admin-btn" routerLink="/admin/overview">Panel Admin</a>
+        }
+      }
+      <button class="icon-btn" type="button" (click)="toggleTheme()" [attr.aria-label]="isDark ? 'Modo claro' : 'Modo oscuro'">
+        <span class="material-symbols-rounded">{{ isDark ? 'light_mode' : 'dark_mode' }}</span>
+      </button>
+      <div class="user-menu-wrap">
+        <button class="icon-btn user-btn" type="button" aria-label="Perfil de usuario" (click)="toggleMenu()">
+          <span class="material-symbols-rounded">account_circle</span>
+        </button>
+        @if (showUserMenu) {
+          <div class="user-popover">
+            <div class="user-line"><strong>{{ profile.name || 'Usuario' }}</strong></div>
+            <div class="user-line">Cedula: {{ profile.cedula || 'No registrada' }}</div>
+            <div class="user-line">{{ profile.email || 'Sin correo' }}</div>
+            <div class="user-line role-line">{{ profile.role || '' }}</div>
+            <button class="btn btn-danger user-logout" type="button" (click)="logout()">Cerrar sesion</button>
+          </div>
+        }
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <router-outlet />
+  </main>
+</div>
